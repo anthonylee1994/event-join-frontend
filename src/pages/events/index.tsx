@@ -1,9 +1,10 @@
 import React from "react";
-import {useEventStore} from "../../store/useEventStore.ts";
+import {useEventStore} from "../../stores/useEventStore.ts";
 import {EventCard} from "./EventCard.tsx";
 import {Box, Progress, VStack} from "@chakra-ui/react";
 import {SearchBar} from "./SearchBar.tsx";
 import {EmptyPlaceholder} from "../../components/EmptyPlaceholder.tsx";
+import {CreateModal} from "./CreateModal";
 
 export const EventPage = () => {
     const isFetching = useEventStore(state => state.isFetching);
@@ -25,6 +26,7 @@ export const EventPage = () => {
                     <EventCard event={event} key={event.id} />
                 ))}
             </VStack>
+            <CreateModal />
         </Box>
     );
 };

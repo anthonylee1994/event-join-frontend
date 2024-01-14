@@ -5,6 +5,7 @@ import moment from "moment";
 import "moment/dist/locale/zh-hk";
 import {useExpand, useWebApp} from "@vkruglikov/react-telegram-web-app";
 import React from "react";
+import {DetailPage} from "./pages/details";
 
 moment.locale("zh-hk");
 
@@ -24,6 +25,7 @@ export const App = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<EventPage />} />
+                    <Route path="details/:id" element={<DetailPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>
