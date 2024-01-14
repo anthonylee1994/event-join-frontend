@@ -17,7 +17,7 @@ export const DetailPage = () => {
     const webApp = useWebApp();
 
     const goBack = () => {
-        navigate(-1);
+        navigate("/");
     };
 
     React.useEffect(() => {
