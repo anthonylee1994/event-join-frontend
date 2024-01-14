@@ -75,6 +75,7 @@ export const CreateModal = () => {
 
                     const response = await apiClient.post("/events", formValues);
                     formikHelpers.setSubmitting(false);
+                    setModalOpen(false);
                     navigate(`/details/${response.data.id}`);
                 }}
             >
