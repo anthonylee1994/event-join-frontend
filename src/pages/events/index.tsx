@@ -1,10 +1,11 @@
 import React from "react";
 import {useEventStore} from "../../stores/useEventStore.ts";
 import {EventCard} from "./EventCard.tsx";
-import {Box, Progress, VStack} from "@chakra-ui/react";
+import {Box, VStack} from "@chakra-ui/react";
 import {SearchBar} from "./SearchBar.tsx";
 import {EmptyPlaceholder} from "../../components/EmptyPlaceholder.tsx";
 import {CreateModal} from "./CreateModal";
+import {LinearProgress} from "../../components/LinearProgress.tsx";
 
 export const EventPage = () => {
     const isFetching = useEventStore(state => state.isFetching);
@@ -18,7 +19,7 @@ export const EventPage = () => {
 
     return (
         <Box>
-            <Progress size="xs" isIndeterminate visibility={isFetching ? undefined : "hidden"} />
+            <LinearProgress isLoading={isFetching} />
             <SearchBar />
             {events.length === 0 && <EmptyPlaceholder />}
             <VStack bgColor="transparent" p={4}>

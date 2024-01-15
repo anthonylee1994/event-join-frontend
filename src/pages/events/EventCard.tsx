@@ -3,6 +3,7 @@ import {AspectRatio, Box, Card, CardBody, CardFooter, Image, Tag} from "@chakra-
 import moment from "moment";
 import {useEventStore} from "../../stores/useEventStore.ts";
 import {useNavigate} from "react-router-dom";
+import {useWebApp} from "@vkruglikov/react-telegram-web-app";
 
 interface Props {
     event: Event;
@@ -10,15 +11,16 @@ interface Props {
 
 export const EventCard = ({event}: Props) => {
     const setKeyword = useEventStore(state => state.setKeyword);
-
+    const webApp = useWebApp();
     const navigate = useNavigate();
 
     const onClick = () => {
+        webApp.HapticFeedback.impactOccurred("heavy");
         navigate(`/details/${event.id}`);
     };
 
     return (
-        <Card cursor="pointer" w="full" borderRadius="2xl" overflow="hidden" mb={2} onClick={onClick}>
+        <Card cursor="pointer" w="full" borderRadius="2xl" overflow="hidden" mb={2} onClick={onClick} _active={{opacity: 0.9}}>
             {event.photo_url && (
                 <AspectRatio ratio={16 / 9}>
                     <Image w="full" src={event.photo_url} />
@@ -44,6 +46,7 @@ export const EventCard = ({event}: Props) => {
                             key={hashtag}
                             onClick={e => {
                                 e.stopPropagation();
+                                webApp.HapticFeedback.impactOccurred("heavy");
                                 setKeyword(`#${hashtag}`);
                             }}
                         >

@@ -1,10 +1,11 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {AspectRatio, Box, Image, Progress, Table, Tag, Tbody, Td, Text, Tr} from "@chakra-ui/react";
+import {AspectRatio, Box, Image, Table, Tag, Tbody, Td, Text, Tr} from "@chakra-ui/react";
 import {useDetailStore} from "../../stores/useDetailStore.ts";
 import React from "react";
 import {BackButton, MainButton, useWebApp} from "@vkruglikov/react-telegram-web-app";
 import moment from "moment";
 import {useEventStore} from "../../stores/useEventStore.ts";
+import {LinearProgress} from "../../components/LinearProgress.tsx";
 
 export const DetailPage = () => {
     const params = useParams<{id: string}>();
@@ -33,7 +34,7 @@ export const DetailPage = () => {
     return (
         <Box>
             <BackButton onClick={goBack} />
-            <Progress size="xs" isIndeterminate visibility={isFetching ? undefined : "hidden"} />
+            <LinearProgress isLoading={isFetching} />
             {detail && (
                 <Box bgColor="white">
                     {detail.photo_url && (
